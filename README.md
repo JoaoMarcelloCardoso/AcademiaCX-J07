@@ -90,6 +90,7 @@
 
 - Criar um novo endereço
   **POST**: localhost:8080/address/save
+
   ```
   {
    "cep": "12234-638",
@@ -102,9 +103,9 @@
   }
   ```
 
-```
 - Atualizar um endereço
-**PUT**: localhost:8080/address/update
+  **PUT**: localhost:8080/address/update
+
 ```
 
 {
@@ -119,40 +120,42 @@
 }
 
 ```
+
 - Deletar um endereço
-**DELETE**: localhost:8080/address/delete?id=11<br>
+  **DELETE**: localhost:8080/address/delete?id=11<br>
 
 ### Items
 
 - Obter lista de Items
-**GET**: localhost:8080/item
+  **GET**: localhost:8080/item
 
 - Obter item por ID
-**GET by ID**: localhost:8080/item/{id}
+  **GET by ID**: localhost:8080/item/{id}
 
 - Criar um novo item
-**POST**: localhost:8080/item/save
+  **POST**: localhost:8080/item/save
+
 ```
 
-{  
+{
  "quantity": 2,
 "product_id": 1,
 "cart_id": 1
 }
 
 ```
+
 - Atualizar um cliente
-**PUT**: localhost:8080/item/update
+  **PUT**: localhost:8080/item/update
+
 ```
 
-{  
+{
  "id": {id},
 "quantity": 2,
 "product_id": 1,
 "cart_id": 1
 }
-
-```
 
 ```
 
