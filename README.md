@@ -11,6 +11,18 @@
 
 **OBS:** trocar o {id} abaixo pelo id desejado
 
+### Fazendo as requisições no Postman
+
+Para fazer as requisições da aplicação é importante utilizar o Basic Auth no Postman. Para fazer isso, siga os seguintes passos:
+
+1. Abra o Postman e crie uma nova requisição.
+2. Clique no botão "Authorization" na aba "Headers".
+3. Selecione a opção "Basic Auth" na lista de opções de autorização.
+4. Insira o username "joaosilva" e a senha "senha123" (todas as senhas pré salvas são senha123, você pode usar qualquer outro usuário do import.sql).
+5. Execute a requisição.
+
+**OBS** Para que funcione corretamente é importante que o import.sql tenha sido lido corretamente pelo hibernate.
+
 ### Produtos
 
 - Obter lista de produtos
