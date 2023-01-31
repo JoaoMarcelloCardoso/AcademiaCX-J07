@@ -54,7 +54,7 @@ FOREIGN KEY (cliente_id) REFERENCES cliente(id),
 FOREIGN KEY (carrinho_id) REFERENCES carrinho(id)
 );
 
-Após criar a tabela, rode o seguinte comando para ter certeza que todas as dependências estão instaladas:  
+Após criar as tabelas, rode o seguinte comando para ter certeza que todas as dependências estão instaladas:  
 > mvn clean install
 
 Rode a aplicação com:  
@@ -71,3 +71,11 @@ No seu postman antes de mais nada configure qualquer autenticação como BasicAu
 > user: admin; password: password ou user:user; password: password.
 
 Após isso você estará apto a fazer qualquer requisição.  
+
+Modelos de requisição mais comuns:  
+Para dar um POST em um produto novo, por exemplo, você pode enviar: 
+> {  
+    "name" : "playstation5",  
+    "categoria" : "eletronicos",  
+    "preco" : 5000  
+}
