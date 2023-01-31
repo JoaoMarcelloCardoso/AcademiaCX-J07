@@ -73,14 +73,14 @@ No seu postman antes de mais nada configure qualquer autenticação como BasicAu
 Após isso você estará apto a fazer qualquer requisição.  
 
 Modelos de requisição mais comuns:  
-Para dar um POST em um produto novo, por exemplo, você pode enviar: 
+Para dar um POST em um produto novo, por exemplo, você pode enviar para a rota /produto/: 
 > {  
     "name" : "playstation5",  
     "categoria" : "eletronicos",  
     "preco" : 5000  
 }
 
-Tendo produtos já cadastrados, você pode criar um carrinho novo adicionando produtos, fazendo:  
+Tendo produtos já cadastrados, você pode criar um carrinho novo adicionando produtos, fazendo para a rota /carrinho/:  
 > {  
   "name": "Carrinho de Compras 1",  
   "produtos": [  
