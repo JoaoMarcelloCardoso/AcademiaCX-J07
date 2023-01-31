@@ -68,6 +68,6 @@ As requests possíveis são:
 > GET all, GET por ID, PUT, POST, DELETE  
 
 No seu postman antes de mais nada configure qualquer autenticação como BasicAuth e entre com um dos dois usuários possíveis:  
-> user: admin; password: password
+> user: admin; password: password ou user:user; password: password.
 
 Após isso você estará apto a fazer qualquer requisição.  
