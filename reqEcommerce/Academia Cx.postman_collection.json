@@ -1,0 +1,714 @@
+{
+	"info": {
+		"_postman_id": "1b9f310e-7ead-41ef-a72c-1e2f65c7813e",
+		"name": "Academia Cx",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18581924"
+	},
+	"item": [
+		{
+			"name": "categoria req",
+			"item": [
+				{
+					"name": "post categoria",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"celular\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/categorias/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"categorias",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/categorias/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"categorias",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get id categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/categorias/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put categorias",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"computador\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/categorias/atualizar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"categorias",
+								"atualizar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete categorias",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/categorias/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"categorias",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cliente req",
+			"item": [
+				{
+					"name": "post cadastrar clientes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "UK_g1kfab8iqqr6etx1gj11d6usp",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Vinicius Teixeira\",\r\n    \"usuario\":\"vinnyteixeira\",\r\n    \"email\": \"vinyteixeira@gmail.com\",\r\n    \"cpf\": \"526.458.456-86\",\r\n    \"senha\": \"58648975?Aa\",\r\n    \"endereco\": \"tomé dias laço\",\r\n    \"numero\": \"56\",\r\n    \"bairro\": \"jardim elza\",\r\n    \"cep\": \"59599959595\",\r\n    \"cidade\": \"são paulo\",\r\n    \"uf\": \"sp\"\r\n\r\n     \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/clientes/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"clientes",
+								"cadastrar"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post logar clientes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"vinyteixeira@gmail.com\",\r\n    \"senha\": \"58648975?Aa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/clientes/logar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"clientes",
+								"logar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all clientes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8091/clientes/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"clientes",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get id clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put clientes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/clientes/atualizar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"clientes",
+								"atualizar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete clientes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lista desejos req",
+			"item": [
+				{
+					"name": "get lista desejo all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/listadesejo/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"listadesejo",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get lista desejo id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/listadesejo/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"listadesejo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get lista de desejo produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/listadesejo/listaDeDesejo/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"listadesejo",
+								"listaDeDesejo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post lista de desejo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Galaxy A13\",\r\n    \"descricao\":\"128GB, 4gb RAM\",\r\n    \"marca\":\"Samsung\",\r\n    \"img\":\"\",\r\n    \"preco\": 1.169,\r\n    \"estoque\": 4,\r\n    \"qtdPedidoProduto\": 1,\r\n    \"categoria\": {\r\n        \"id\": 1,\r\n        \"nome\":\"celular\"\r\n    }\r\n\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/listadesejo/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"listadesejo",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put lista de desejo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Galaxy A13\",\r\n    \"descricao\":\"128GB, 4gb RAM\",\r\n    \"marca\":\"Samsung\",\r\n    \"img\":\"\",\r\n    \"preco\": 1.100,\r\n    \"estoque\": 4,\r\n    \"qtdPedidoProduto\": 1,\r\n    \"categoria\": {\r\n        \"id\": 1,\r\n        \"nome\":\"celular\"\r\n    },\r\n    \"pedidos\": {\r\n        \"id\": 1\r\n    }\r\n\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/listadesejo/atualizar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"listadesejo",
+								"atualizar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete produto lista de desejo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/listadesejo/produto_lista/produtos/1/listadesejo/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"listadesejo",
+								"produto_lista",
+								"produtos",
+								"1",
+								"listadesejo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete lista de desejo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/listadesejo/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"listadesejo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "carrinho req",
+			"item": [
+				{
+					"name": "put pedidos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Galaxy A13\",\r\n    \"descricao\":\"128GB, 4gb RAM\",\r\n    \"marca\":\"Samsung\",\r\n    \"img\":\"\",\r\n    \"preco\": 1.169,\r\n    \"estoque\": 4,\r\n    \"qtdPedidoProduto\": 1,\r\n    \"categoria\": {\r\n        \"id\": 1,\r\n        \"nome\":\"celular\"\r\n    },\r\n    \"pedidos\": {\r\n        \"id\": 1\r\n    }\r\n\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete pedidos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post pedidos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Galaxy A13\",\r\n    \"descricao\":\"128GB, 4gb RAM\",\r\n    \"marca\":\"Samsung\",\r\n    \"img\":\"\",\r\n    \"preco\": 1.169,\r\n    \"estoque\": 4,\r\n    \"qtdPedidoProduto\": 1,\r\n    \"categoria\": {\r\n        \"id\": 1,\r\n        \"nome\":\"celular\"\r\n    },\r\n    \"pedidos\": {\r\n        \"id\": 1\r\n    }\r\n\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/pedidos/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"pedidos",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/pedidos/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"pedidos",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get id pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "produtos req",
+			"item": [
+				{
+					"name": "post produtos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Galaxy A13\",\r\n    \"descricao\":\"128GB, 4gb RAM\",\r\n    \"marca\":\"Samsung\",\r\n    \"img\":\"\",\r\n    \"preco\": 1.169,\r\n    \"estoque\": 4,\r\n    \"qtdPedidoProduto\": 1,\r\n    \"categoria\": {\r\n        \"id\": 1,\r\n        \"nome\":\"celular\"\r\n    }\r\n\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/produtos/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"produtos",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put produtos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Galaxy A13\",\r\n    \"descricao\":\"128GB, 4gb RAM\",\r\n    \"marca\":\"Samsung\",\r\n    \"img\":\"\",\r\n    \"preco\": 1.169,\r\n    \"estoque\": 4,\r\n    \"qtdPedidoProduto\": 1,\r\n    \"categoria\": {\r\n        \"id\": 1,\r\n        \"nome\":\"celular\"\r\n    },\r\n    \"pedidos\": {\r\n        \"id\": 1\r\n    }\r\n\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/produtos/produto_pedido/produtos/1/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"produtos",
+								"produto_pedido",
+								"produtos",
+								"1",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get id produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/produtos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
