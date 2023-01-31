@@ -79,3 +79,20 @@ Para dar um POST em um produto novo, por exemplo, você pode enviar:
     "categoria" : "eletronicos",  
     "preco" : 5000  
 }
+
+Tendo produtos já cadastrados, você pode criar um carrinho novo adicionando produtos, fazendo:  
+> {  
+  "name": "Carrinho de Compras 1",  
+  "produtos": [  
+    {  
+      "name": "Produto 1",  
+      "categoria": "Eletrônicos",  
+      "preco": 1000.00  
+    },  
+    {  
+      "name": "Produto 2",  
+      "categoria": "Moda",  
+      "preco": 50.00  
+    }  
+  ]  
+}  
