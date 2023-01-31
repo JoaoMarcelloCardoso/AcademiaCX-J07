@@ -48,6 +48,7 @@ FOREIGN KEY (cliente_id) REFERENCES cliente(id)
 
 > CREATE TABLE compra (
 id BIGINT PRIMARY KEY AUTO_INCREMENT,
+pagamento VARCHAR(255) NOT NULL,
 cliente_id BIGINT,
 carrinho_id BIGINT,
 FOREIGN KEY (cliente_id) REFERENCES cliente(id),
