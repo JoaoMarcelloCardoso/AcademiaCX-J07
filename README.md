@@ -6,6 +6,7 @@ A atividade consiste em, a partir das models Carrinho, Cliente, Compra, Produto 
 - Mostra os produtos que podem ser selecionados para o carrinho  
 - Cria o Carrinho (Que é vinculado à um cliente específico, adicionando produtos)  
 - Conclui o pagamento, que é ligado à um carrinho e à um user    
+- Autenticação é feita InMemory mas as rotas trabalham com banco de dados MySQL
 
 ## Como usar
 Por padrão, a aplicação está configurada pra usar o banco de dados cxcommerce_teste2 no appplication.properties. Mas você pode e deve alterar isso.  
@@ -96,4 +97,14 @@ Tendo produtos já cadastrados, você pode criar um carrinho novo adicionando pr
       "preco": 50.00  
     }  
   ]  
+}  
+
+Para criar novo cliente, você pode dar POST em /cliente/ com, por exemplo:
+> {  
+    "name": "John",  
+    "last_name": "Doe",  
+    "email": "john.doe@example.com",  
+    "phone_number": "555-555-5555",  
+    "endereco": "123 Main St",  
+    "carrinhos": []  
 }  
