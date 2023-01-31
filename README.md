@@ -5,7 +5,7 @@ A atividade consiste em, a partir das models Carrinho, Cliente, Compra, Produto 
 -  Login de admin e user  
 - Mostra os produtos que podem ser selecionados para o carrinho  
 - Cria o Carrinho (Que é vinculado à um cliente específico, adicionando produtos)  
-- Conclui o pagamento, que é ligado à um carrinho e à um user    
+- Conclui o pagamento, que é ligado à um carrinho e à um user e permite escolher o tipo de pagamento  
 - Autenticação é feita InMemory mas as rotas trabalham com banco de dados MySQL
 
 ## Como usar
