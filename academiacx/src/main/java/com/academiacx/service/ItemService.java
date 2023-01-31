@@ -1,6 +1,5 @@
 package com.academiacx.service;
 
-import com.academiacx.handler.exceptions.ParametroInvalidoException;
 import com.academiacx.handler.exceptions.ParametroNullException;
 import com.academiacx.handler.exceptions.RecursoNaoEncontradoException;
 import com.academiacx.model.CarrinhoModel;

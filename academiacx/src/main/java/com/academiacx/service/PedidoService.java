@@ -77,6 +77,10 @@ public class PedidoService {
 
     public PedidoDto insert(PedidoModel pedidoModel, String cupom) {
 
+        if (cupom != null && (!cupom.equals("academiacx10") && !cupom.equals("academiacx20") && !cupom.equals("academiacx30"))) {
+            throw new ParametroInvalidoException("Cupom informado é inválido!");
+        }
+
         validarPedido(pedidoModel);
 
         pedidoModel.setData(LocalDate.now());
@@ -87,7 +91,7 @@ public class PedidoService {
             PedidoDto pedidoDto = new PedidoDto(pedidoRepository.save(pedidoModel));
             CarrinhoDto carrinhoDto = carrinhoService.update(pedidoModel.getCarrinho());
 
-            if (cupom != null) {
+            if (cupom != null && (cupom.equals("academiacx10") || cupom.equals("academiacx20") || cupom.equals("academiacx30"))) {
                 carrinhoDto = carrinhoService.atualizarTotalComCupom(pedidoModel.getCarrinho(), cupom);
             }
 
