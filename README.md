@@ -1,15 +1,73 @@
 # Ecommerce
 Um ecommerce com Spring
 
-Este é um projeto Java Spring Boot com as seguintes dependências:
+A atividade consiste em, a partir das models Carrinho, Cliente, Compra, Produto e User, fazer o backend de um ecommerce que tenha:  
+-  Login de admin e user  
+- Mostra os produtos que podem ser selecionados para o carrinho  
+- Cria o Carrinho (Que é vinculado à um cliente específico, adicionando produtos)  
+- Conclui o pagamento, que é ligado à um carrinho e à um user    
 
-    spring-boot-starter-data-jpa
-    spring-boot-starter-web
-    spring-boot-starter-test (com escopo apenas para testes)
-    javax.persistence-api
-    mysql-connector-java
-    jackson-dataformat-xml
-    modelmapper
-    spring-boot-starter-security
+## Como usar
+Por padrão, a aplicação está configurada pra usar o banco de dados cxcommerce_teste2 no appplication.properties. Mas você pode e deve alterar isso.  
+Par rodar a aplicação, primeiramente:
+- Crie um banco de dados local com o nome que quiser e coloque esse nome no application.properties.  
+- Use a seguinte query para criar as tabelas:  
 
-Ele utiliza o Maven como gerenciador de dependências e o plugin spring-boot-maven-plugin para facilitar o processo de construção e execução do projeto. A versão atual do Spring Boot é 2.7.8 e a versão do Java utilizada é 11. O projeto foi criado com o objetivo de ser uma demonstração para Spring Boot.
+> CREATE TABLE produto (
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+categoria VARCHAR(255) NOT NULL,
+preco BIGINT
+);
+
+> CREATE TABLE carrinho (
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+produto_id BIGINT,
+FOREIGN KEY (produto_id) REFERENCES produto(id)
+);
+
+> CREATE TABLE cliente (
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+last_name VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
+phone_number BIGINT,
+endereco VARCHAR(255) NOT NULL,
+carrinho_id BIGINT,
+FOREIGN KEY (carrinho_id) REFERENCES carrinho(id)
+);
+
+> CREATE TABLE user (
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+username VARCHAR(255) NOT NULL,
+password VARCHAR(255) NOT NULL,
+cliente_id BIGINT,
+FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+);
+
+> CREATE TABLE compra (
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+cliente_id BIGINT,
+carrinho_id BIGINT,
+FOREIGN KEY (cliente_id) REFERENCES cliente(id),
+FOREIGN KEY (carrinho_id) REFERENCES carrinho(id)
+);
+
+Após criar a tabela, rode o seguinte comando para ter certeza que todas as dependências estão instaladas:  
+> mvn clean install
+
+Rode a aplicação com:  
+> mvn spring-boot:run
+
+Entre no seu POSTMAN, onde você conseguirá enviar requisições diversas para as rotas. 
+As rotas são:  
+> /carrinho, /cliente, /compra, /produto, /user
+
+As requests possíveis são:  
+> GET all, GET por ID, PUT, POST, DELETE  
+
+No seu postman antes de mais nada configure qualquer autenticação como BasicAuth e entre com um dos dois usuários possíveis:  
+> user: admin; password: password
+
+Após isso você estará apto a fazer qualquer requisição.  
