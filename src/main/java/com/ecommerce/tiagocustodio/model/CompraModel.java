@@ -10,6 +10,9 @@ public class CompraModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "pagamento")
+    private String pagamento;
+
     @OneToOne
     @JoinColumn(name = "cliente_id")
     private ClienteModel clienteModel;
@@ -20,8 +23,9 @@ public class CompraModel {
 
     public CompraModel() {}
 
-    public CompraModel(Long id, ClienteModel clienteModel, List<CarrinhoModel> carrinhos) {
+    public CompraModel(Long id, String pagamento, ClienteModel clienteModel, List<CarrinhoModel> carrinhos) {
         this.id = id;
+        this.pagamento = pagamento;
         this.clienteModel = clienteModel;
         this.carrinhos = carrinhos;
     }
@@ -48,5 +52,13 @@ public class CompraModel {
 
     public void setCarrinhos(List<CarrinhoModel> carrinhos) {
         this.carrinhos = carrinhos;
+    }
+
+    public String getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(String pagamento) {
+        this.pagamento = pagamento;
     }
 }

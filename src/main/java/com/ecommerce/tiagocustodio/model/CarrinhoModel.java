@@ -18,11 +18,11 @@ public class CarrinhoModel {
 
     @OneToMany
     @JoinColumn(name = "produto_id")
-    private List<CarrinhoModel> produtos;
+    private List<ProdutoModel> produtos;
 
     public CarrinhoModel() {}
 
-    public CarrinhoModel(Long id, String name, List<CarrinhoModel> produtos) {
+    public CarrinhoModel(Long id, String name, List<ProdutoModel> produtos) {
         this.id = id;
         this.name = name;
         this.produtos = produtos;
@@ -44,11 +44,12 @@ public class CarrinhoModel {
         this.name = name;
     }
 
-    public List<CarrinhoModel> getProdutos() {
+
+    public List<ProdutoModel> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<CarrinhoModel> produtos) {
+    public void setProdutos(List<ProdutoModel> produtos) {
         this.produtos = produtos;
     }
 }
