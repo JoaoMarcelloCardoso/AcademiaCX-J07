@@ -32,4 +32,9 @@ public interface CarrinhoRepository extends JpaRepository<CarrinhoModel, Long> {
     }
 
     Optional<CarrinhoModel> findByClienteId(Long id);
+
+    @Query("select c from CarrinhoModel c left join c.items items where c.id = ?1 or c.cliente.id = ?2 or items.id = ?3")
+    Optional<CarrinhoModel> findByClienteIdOrIdOrItemId(Long id, Long cliente_id, Long item_id);
+
+
 }

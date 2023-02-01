@@ -14,6 +14,7 @@ import com.demo.academiacx.repository.UserRepository;
 import com.demo.academiacx.utils.ValidacaoUtils;
 import lombok.AllArgsConstructor;
 import org.apache.catalina.Store;
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -112,7 +113,7 @@ public class UserService {
         carrinhoModel.setCliente(userModel.getCliente());
         carrinhoModel.setTotal(new BigDecimal(0));
 
-        carrinhoRepository.save(carrinhoModel).getId();
+        carrinhoModel = carrinhoRepository.save(carrinhoModel);
 
         return result;
     }
@@ -135,16 +136,16 @@ public class UserService {
         return true;
     }
 
-    public UserModel findByNameAndEmail(String name, String email) {
+    public UserDto findByNameOrEmailOrId(String name, String email, Long id, String username) {
 
-        Optional<List<UserModel>> listUserModel = userRepository.findByNameOrEmail(name, email);
+        Optional<UserModel> userModel = userRepository.findByNameOrEmailOrIdOrUsername(id, name, email, username);
 
-        if (listUserModel.isPresent()) {
-            return listUserModel.stream().findFirst().get().get(0);
+        if (userModel.isPresent()) {
+            return modelMapper.map(userModel, UserDto.class);
+            //return userModel.stream().findFirst().get();
         } else {
             throw new RecursoNaoEncontradoException("Usuário não encontrado");
         }
-
     }
 
     public UserDto buscarPorId(Long id) {

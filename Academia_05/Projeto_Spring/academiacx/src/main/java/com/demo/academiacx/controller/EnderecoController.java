@@ -2,6 +2,7 @@ package com.demo.academiacx.controller;
 
 import com.demo.academiacx.model.dto.endereco.EnderecoDto;
 import com.demo.academiacx.service.EnderecoService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,13 +10,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/endereco")
+@AllArgsConstructor
 public class EnderecoController {
 
     private final EnderecoService enderecoService;
-
-    public EnderecoController(EnderecoService enderecoService) {
-        this.enderecoService = enderecoService;
-    }
 
     @GetMapping
     public ResponseEntity<?> findAll() {
@@ -39,7 +37,7 @@ public class EnderecoController {
 
         return response == null ? ResponseEntity.unprocessableEntity().build() : ResponseEntity.ok(response);
     }
-    @PostMapping("/save")
+    @PostMapping("/salvar")
     public ResponseEntity<?> insert(@RequestBody EnderecoDto enderecoDto) {
 
         EnderecoDto response = enderecoService.insert(enderecoDto);

@@ -11,8 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -102,5 +102,15 @@ public class ProdutoService {
             throw new ConstraintViolationException("Esta ação viola a integridade dos dados presentes no banco de dados!");
         }
 
+    }
+
+    public ProdutoDto findByNomeOrSkuOrId(Long id, String nome, String sku) {
+        Optional<ProdutoModel> produtoModel = produtoRepository.findByNomeOrSkuOrId(nome, sku, id);
+
+        if (produtoModel.isPresent()) {
+            return modelMapper.map(produtoModel, ProdutoDto.class);
+        } else {
+            throw new RecursoNaoEncontradoException("Usuário não encontrado");
+        }
     }
 }

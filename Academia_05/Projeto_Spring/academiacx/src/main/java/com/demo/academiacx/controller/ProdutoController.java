@@ -1,21 +1,22 @@
 package com.demo.academiacx.controller;
 
+import com.demo.academiacx.handler.exceptions.RecursoNaoEncontradoException;
 import com.demo.academiacx.model.dto.produto.ProdutoDto;
 import com.demo.academiacx.service.ProdutoService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/produto")
+@AllArgsConstructor
 public class ProdutoController {
 
     private final ProdutoService produtoService;
 
-    public ProdutoController(ProdutoService produtoService) {
-        this.produtoService = produtoService;
-    }
 
     @GetMapping
     public ResponseEntity<?> findAll() {
@@ -33,7 +34,7 @@ public class ProdutoController {
         return response == null ? ResponseEntity.unprocessableEntity().build() : ResponseEntity.ok(response);
     }
 
-    @PostMapping("/save")
+    @PostMapping("/salvar")
     public ResponseEntity<?> insert(@RequestBody ProdutoDto produtoDto) {
 
         ProdutoDto response = produtoService.insert(produtoDto);
@@ -54,5 +55,11 @@ public class ProdutoController {
 
         return produtoService.delete(id);
     }
+    @GetMapping("/filter")
+    public ProdutoDto findByNomeOrSkuOrId(@RequestParam(value = "nome", required = false) String nome,
+                                          @RequestParam(value = "sku", required = false)String sku,
+                                          @RequestParam(value = "id", required = false) Long id) {
 
+        return produtoService.findByNomeOrSkuOrId(id, nome, sku);
+    }
 }

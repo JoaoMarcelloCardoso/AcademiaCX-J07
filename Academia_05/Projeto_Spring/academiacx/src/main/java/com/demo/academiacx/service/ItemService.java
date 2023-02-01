@@ -6,7 +6,9 @@ import com.demo.academiacx.handler.exceptions.RecursoNaoEncontradoException;
 import com.demo.academiacx.model.CarrinhoModel;
 import com.demo.academiacx.model.ItemModel;
 import com.demo.academiacx.model.ProdutoModel;
+import com.demo.academiacx.model.UserModel;
 import com.demo.academiacx.model.dto.compra.ItemDto;
+import com.demo.academiacx.model.dto.produto.ProdutoDto;
 import com.demo.academiacx.repository.CarrinhoRepository;
 import com.demo.academiacx.repository.ItemRepository;
 import com.demo.academiacx.repository.ProdutoRepository;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -120,6 +123,43 @@ public class ItemService {
             return true;
         } catch (Exception e) {
             throw new ParametroInvalidoException("Erro ao deletar item");
+        }
+    }
+
+    public boolean deleteByCarrinho(Long id) {
+        try {
+            if (itemRepository.findByCarrinhoId(id) == null){
+                throw new RecursoNaoEncontradoException("Não existe item com o id informado");
+            }
+            CarrinhoModel carrinhoModel = itemRepository.findById(id).get().getCarrinho();
+            carrinhoModel.setTotal(carrinhoModel.getTotal().subtract (itemRepository.findById(id).get().getTotal()));
+
+            itemRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            throw new ParametroInvalidoException("Erro ao deletar item");
+        }
+    }
+
+    public ItemModel findByCarrinhoId(Long id) {
+        if (id == null) {
+            throw new ParametroInvalidoException("Id informado inválido");
+        }
+
+        try {
+            return itemRepository.findByCarrinhoId(id).orElseThrow(() -> new RecursoNaoEncontradoException("Item não encontrado com o id informado"));
+        } catch (Exception e) {
+            throw new ParametroInvalidoException("Erro ao buscar item pelo id");
+        }
+    }
+
+    public ItemModel findByProdutoIdOrCarrinhoIdOrItemId(Long id, Long produtoId, Long carrinhoId) {
+        Optional<List<ItemModel>> itemModels = itemRepository.findByProdutoIdOrCarrinhoIdOrItemId(id, produtoId, carrinhoId);
+
+        if (itemModels.isPresent()) {
+            return itemModels.stream().findFirst().get().get(0);
+        } else {
+            throw new RecursoNaoEncontradoException("Usuário não encontrado");
         }
     }
 }

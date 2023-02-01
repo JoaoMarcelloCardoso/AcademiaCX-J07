@@ -1,8 +1,11 @@
 package com.demo.academiacx.controller;
 
+import com.demo.academiacx.model.CarrinhoModel;
+import com.demo.academiacx.model.ItemModel;
 import com.demo.academiacx.model.dto.carrinho.CarrinhoDto;
 import com.demo.academiacx.service.CarrinhoService;
 import com.demo.academiacx.service.ProdutoService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/carrinho")
+@AllArgsConstructor
 public class CarrinhoController {
 
     private final CarrinhoService carrinhoService;
@@ -17,11 +21,6 @@ public class CarrinhoController {
 
     private ProdutoService produtoService;
 
-
-    public CarrinhoController(CarrinhoService carrinhoService, ProdutoService productService) {
-        this.carrinhoService = carrinhoService;
-        this.produtoService = productService;
-    }
 
     @GetMapping
     public ResponseEntity<?> findAll() {
@@ -39,7 +38,7 @@ public class CarrinhoController {
         return response == null ? ResponseEntity.unprocessableEntity().build() : ResponseEntity.ok(response);
     }
 
-    @PostMapping("/save")
+    @PostMapping("/salvar")
     public ResponseEntity<?> insert(@RequestBody CarrinhoDto carrinhoDto) {
 
         CarrinhoDto response = carrinhoService.insert(carrinhoDto);
@@ -61,9 +60,18 @@ public class CarrinhoController {
 
         return carrinhoService.delete(id);
     }
-    @GetMapping("cliente/{id}")
+    @GetMapping("/cliente/{id}")
     public ResponseEntity<?> findByClienteId(@PathVariable Long id){
         CarrinhoDto response = carrinhoService.findByCliente(id);
+
+        return response == null ? ResponseEntity.unprocessableEntity().build() : ResponseEntity.ok(response);
+    }
+    @GetMapping("/filter")
+    public ResponseEntity<?> findByClienteIdOrIdOrItemId(@RequestParam(value = "cliente_id", required = false) Long cliente_id,
+                                                                 @RequestParam(value = "item_id", required = false) Long item_id,
+                                                                 @RequestParam(value = "id", required = false) Long id) {
+
+        CarrinhoDto response = carrinhoService.findByClienteIdOrIdOrItemId(id, cliente_id, item_id);
 
         return response == null ? ResponseEntity.unprocessableEntity().build() : ResponseEntity.ok(response);
     }

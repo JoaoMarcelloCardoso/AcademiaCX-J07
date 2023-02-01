@@ -6,7 +6,9 @@ import com.demo.academiacx.handler.exceptions.ParametroNullException;
 import com.demo.academiacx.handler.exceptions.RecursoNaoEncontradoException;
 import com.demo.academiacx.model.CarrinhoModel;
 import com.demo.academiacx.model.ClienteModel;
+import com.demo.academiacx.model.ItemModel;
 import com.demo.academiacx.model.dto.carrinho.CarrinhoDto;
+import com.demo.academiacx.model.dto.user.UserDto;
 import com.demo.academiacx.repository.CarrinhoRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarrinhoService {
@@ -125,5 +128,16 @@ public class CarrinhoService {
 
     public void deleteByClienteId(ClienteModel clienteModel) {
         carrinhoRepository.deleteByClienteId(clienteModel.getId());
+    }
+
+    public CarrinhoDto findByClienteIdOrIdOrItemId(Long id, Long clienteId, Long itemId) {
+        Optional<CarrinhoModel> carrinhoModels = carrinhoRepository.findByClienteIdOrIdOrItemId(id, clienteId, itemId);
+
+        if (carrinhoModels.isPresent()) {
+            return modelMapper.map(carrinhoModels, CarrinhoDto.class);
+            //return carrinhoModels.stream().findFirst().get().get(0);
+        } else {
+            throw new RecursoNaoEncontradoException("Usuário não encontrado");
+        }
     }
 }

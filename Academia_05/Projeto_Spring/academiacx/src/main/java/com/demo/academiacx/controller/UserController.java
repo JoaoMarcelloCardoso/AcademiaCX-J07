@@ -4,6 +4,7 @@ import com.demo.academiacx.model.UserModel;
 import com.demo.academiacx.model.dto.user.UserDto;
 import com.demo.academiacx.model.dto.user.UserResponseDto;
 import com.demo.academiacx.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,12 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
+@AllArgsConstructor
 public class UserController {
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping
     public ResponseEntity<?> findAll() {
@@ -47,18 +45,12 @@ public class UserController {
     }
 
     @GetMapping("/filter")
-    public UserModel filter(@RequestParam(value = "name", required = true) String name,
-                          @RequestParam(value = "email", required = false) String email) {
+    public UserDto filter(@RequestParam(value = "name", required = false) String name,
+                            @RequestParam(value = "username", required = false) String username,
+                            @RequestParam(value = "email", required = false) String email,
+                            @RequestParam(value = "id", required = false) Long id) {
 
-        return userService.findByNameAndEmail(name, email);
+        return userService.findByNameOrEmailOrId(name, email, id, username);
     }
-
-    @GetMapping("/buscar-id")
-    public UserDto filter(@RequestParam(value = "id", required = true) Long id) {
-        return userService.buscarPorId(id);
-    }
-
-
-
 
 }

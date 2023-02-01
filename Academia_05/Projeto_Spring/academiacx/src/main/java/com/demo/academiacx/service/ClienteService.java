@@ -6,6 +6,7 @@ import com.demo.academiacx.handler.exceptions.ParametroNullException;
 import com.demo.academiacx.handler.exceptions.RecursoNaoEncontradoException;
 import com.demo.academiacx.model.ClienteModel;
 import com.demo.academiacx.model.CompraModel;
+import com.demo.academiacx.model.UserModel;
 import com.demo.academiacx.model.dto.user.ClienteDto;
 import com.demo.academiacx.repository.ClienteRepository;
 import com.demo.academiacx.utils.ValidacaoUtils;
@@ -14,6 +15,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -140,5 +142,16 @@ public class ClienteService {
         }
 
         return modelMapper.map(clienteModel, ClienteDto.class);
+    }
+
+    public ClienteDto findByNameOrId(String name,  Long id) {
+
+        Optional<ClienteModel> clienteModel = clienteRepository.findByNameOrId(id, name);
+
+        if (clienteModel.isPresent()) {
+            return modelMapper.map(clienteModel, ClienteDto.class);
+        } else {
+            throw new RecursoNaoEncontradoException("Usuário não encontrado");
+        }
     }
 }

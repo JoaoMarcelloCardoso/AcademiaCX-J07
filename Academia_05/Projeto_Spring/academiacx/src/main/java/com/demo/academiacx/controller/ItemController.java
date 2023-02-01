@@ -2,7 +2,9 @@ package com.demo.academiacx.controller;
 
 import com.demo.academiacx.model.ItemModel;
 import com.demo.academiacx.model.dto.compra.ItemDto;
+import com.demo.academiacx.model.dto.produto.ProdutoDto;
 import com.demo.academiacx.service.ItemService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/item")
+@AllArgsConstructor
 public class ItemController {
 
     private final ItemService itemService;
-
-    public ItemController(ItemService itemService) {
-        this.itemService = itemService;
-    }
 
     @GetMapping
     public ResponseEntity<?> findAll() {
@@ -33,15 +32,14 @@ public class ItemController {
 
         return response == null ? ResponseEntity.unprocessableEntity().build() : ResponseEntity.ok(response);
     }
-//    @GetMapping("/carrinho/{id}")
-//    public ResponseEntity<?> findByCarrinhoId(@PathVariable Long id) {
-//
-//        ItemDto response = itemService.findByCarrinhoId(id);
-//
-//        return response == null ? ResponseEntity.unprocessableEntity().build() : ResponseEntity.ok(response);
-//    }
+    @GetMapping("/carrinho/{id}")
+    public ResponseEntity<?> findByCarrinhoId(@PathVariable Long id) {
 
-    @PostMapping("/save")
+        ItemModel response = itemService.findByCarrinhoId(id);
+
+        return response == null ? ResponseEntity.unprocessableEntity().build() : ResponseEntity.ok(response);
+    }
+    @PostMapping("/salvar")
     public ResponseEntity<?> insert(@RequestBody ItemDto itemDto) {
 
         ItemModel response = itemService.insert(itemDto);
@@ -62,9 +60,18 @@ public class ItemController {
 
         return itemService.delete(id);
     }
-//    @DeleteMapping("/delete/{id}")
-//    public boolean deleteByCarrinhoId(@PathVariable Long id) {
-//
-//        return itemService.deleteByCarrinho(id);
-//    }
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteByCarrinhoId(@PathVariable Long id) {
+
+        return itemService.deleteByCarrinho(id);
+    }
+    @GetMapping("/filter")
+    public ResponseEntity<?> findByProdutoIdOrCarrinhoIdOrItemId(@RequestParam(value = "produto_id", required = false) Long produto_id,
+                                                          @RequestParam(value = "carrinho_id", required = false) Long carrinho_id,
+                                                          @RequestParam(value = "id", required = false) Long id) {
+
+        ItemModel response = itemService.findByProdutoIdOrCarrinhoIdOrItemId(id, produto_id, carrinho_id);
+
+        return response == null ? ResponseEntity.unprocessableEntity().build() : ResponseEntity.ok(response);
+    }
 }
